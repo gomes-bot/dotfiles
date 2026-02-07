@@ -17,3 +17,19 @@ vim.opt.hidden = true
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.updatetime = 300
+vim.opt.clipboard = "unnamedplus"
+
+-- Force OSC 52 over SSH (instead of pbcopy which only works locally)
+if os.getenv("SSH_TTY") then
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    },
+  }
+end

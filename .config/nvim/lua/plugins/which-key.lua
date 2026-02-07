@@ -12,6 +12,7 @@ return {
       { "<Space>b", group = "+Buffers" },
       { "<Space>w", group = "+Windows" },
       { "<Space>g", group = "+VCS/git" },
+      { "<Space>gh", group = "+Hunks" },
       { "<Space>s", group = "+Search" },
       { "<Space>p", group = "+Projects" },
       { "<Space>q", group = "+Quit" },

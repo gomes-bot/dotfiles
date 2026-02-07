@@ -127,3 +127,6 @@ vim.keymap.set("n", "<Space>en", vim.diagnostic.goto_next, { desc = "Next error"
 vim.keymap.set("n", "<Space>ep", vim.diagnostic.goto_prev, { desc = "Previous error" })
 vim.keymap.set("n", "<Space>el", "<cmd>lua vim.diagnostic.setqflist({open = true})<cr>", { desc = "List errors" })
 vim.keymap.set("n", "<Space>ef", vim.diagnostic.open_float, { desc = "Error float" })
+
+-- q closes any buffer
+vim.keymap.set("n", "q", "<cmd>close<cr>", { desc = "Close buffer" })
