@@ -40,7 +40,7 @@ return {
       },
     },
     keys = {
-      { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Hover doc" },
+      { "K", function() require("better-type-hover").better_type_hover() end, desc = "Hover doc (expanded types)" },
       { "gd", "<cmd>Lspsaga goto_definition<cr>", desc = "Go to definition" },
       { "gD", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definition" },
       { "gr", "<cmd>Lspsaga finder<cr>", desc = "Find references" },

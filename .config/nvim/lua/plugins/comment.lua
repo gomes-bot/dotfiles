@@ -2,9 +2,12 @@ return {
   "numToStr/Comment.nvim",
   config = function()
     require("Comment").setup()
-    
-    -- SpaceVim style: Space c l to toggle comment
-    vim.keymap.set("n", "<Space>cl", "<cmd>lua require(\"Comment.api\").toggle.linewise.current()<cr>", { desc = "Comment line" })
-    vim.keymap.set("v", "<Space>cl", "<esc><cmd>lua require(\"Comment.api\").toggle.linewise(vim.fn.visualmode())<cr>", { desc = "Comment selection" })
+
+    local api = require("Comment.api")
+    vim.keymap.set("n", "<Space>cl", function() api.toggle.linewise.current() end, { desc = "Comment line" })
+    vim.keymap.set("v", "<Space>cl", function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
+      api.toggle.linewise(vim.fn.visualmode())
+    end, { desc = "Comment selection" })
   end,
 }
