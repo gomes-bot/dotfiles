@@ -9,29 +9,20 @@ tm() {
   fi
   tmux attach -t main 2>/dev/null || tmux new -s main
 }
-
 export PATH="$HOME/.local/bin:$PATH"
-
 # opencode
-export PATH=/Users/gomes/.opencode/bin:$PATH
-
+export PATH=$HOME/.opencode/bin:$PATH
 # oh my zsh
-
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git macos sudo colorize yarn node npm tmux)
-
 source $ZSH/oh-my-zsh.sh
 alias v="nvim"
-
 # Tmux autostart
 export ZSH_TMUX_AUTOSTART=true
-
 # Aliases
 alias sit="cd $HOME/Sites"
-
 # Editor
 export EDITOR=/opt/homebrew/bin/nvim
 export VISUAL=/opt/homebrew/bin/nvim
-alias config='/usr/bin/git --git-dir=/Users/gomes/.cfg/ --work-tree=/Users/gomes'
-alias config='/usr/bin/git --git-dir=/Users/gomes/.cfg/ --work-tree=/Users/gomes'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
