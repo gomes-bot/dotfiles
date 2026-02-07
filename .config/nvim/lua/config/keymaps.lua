@@ -70,8 +70,8 @@ vim.keymap.set("n", "<Space>tw", "<cmd>set wrap!<cr>", { desc = "Toggle wrap" })
 vim.keymap.set("n", "<Space>th", "<cmd>set hlsearch!<cr>", { desc = "Toggle highlight" })
 
 -- [e] +Errors (Trouble)
-vim.keymap.set("n", "<Space>ee", "<cmd>Trouble diagnostics toggle<cr>", { desc = "All diagnostics" })
-vim.keymap.set("n", "<Space>eb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer diagnostics" })
+vim.keymap.set("n", "<Space>ee", "<cmd>lua vim.diagnostic.setqflist()<cr><cmd>copen<cr>", { desc = "All diagnostics" })
+vim.keymap.set("n", "<Space>eb", "<cmd>lua vim.diagnostic.setqflist({open = true})<cr>", { desc = "Buffer diagnostics" })
 
 -- [l] +LSP
 vim.keymap.set("n", "<Space>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
@@ -107,3 +107,23 @@ vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Find k
 
 -- Ctrl+P for find files
 vim.keymap.set("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+
+-- Which-key descriptions for g prefix
+local wk = require("which-key")
+wk.add({
+  { "gd", desc = "Go to definition" },
+  { "gD", desc = "Go to declaration" },
+  { "gi", desc = "Go to implementation" },
+  { "gr", desc = "Go to references" },
+  { "gL", desc = "Show diagnostics" },
+  { "go", desc = "Go to type definition" },
+  { "gn", desc = "Search forwards and select" },
+  { "gN", desc = "Search backwards and select" },
+})
+
+
+-- [e] +Errors additional bindings
+vim.keymap.set("n", "<Space>en", vim.diagnostic.goto_next, { desc = "Next error" })
+vim.keymap.set("n", "<Space>ep", vim.diagnostic.goto_prev, { desc = "Previous error" })
+vim.keymap.set("n", "<Space>el", "<cmd>lua vim.diagnostic.setqflist({open = true})<cr>", { desc = "List errors" })
+vim.keymap.set("n", "<Space>ef", vim.diagnostic.open_float, { desc = "Error float" })
