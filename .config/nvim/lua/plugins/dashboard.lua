@@ -23,15 +23,7 @@ return {
       if path:match("%.lock$") then return true end
       if path:match("package%-lock%.json$") then return true end
       if path:match("yarn%.lock$") then return true end
-      
-      local cwd = vim.fn.getcwd()
-      if vim.fn.isdirectory(cwd .. "/.git") == 1 then
-        local result = vim.fn.system("git -C " .. vim.fn.shellescape(cwd) .. " check-ignore -q " .. vim.fn.shellescape(path) .. " 2>/dev/null; echo $?")
-        if vim.trim(result) == "0" then
-          return true
-        end
-      end
-      
+
       return false
     end
 
