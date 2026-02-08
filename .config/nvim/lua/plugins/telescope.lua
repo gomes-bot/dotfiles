@@ -26,5 +26,13 @@ return {
     })
     telescope.load_extension("ui-select")
     telescope.load_extension("file_browser")
+
+    vim.api.nvim_create_user_command("Rg", function(opts)
+      if opts.args ~= "" then
+        require("telescope.builtin").grep_string({ search = opts.args })
+      else
+        require("telescope.builtin").live_grep()
+      end
+    end, { nargs = "?", desc = "Ripgrep search" })
   end,
 }
