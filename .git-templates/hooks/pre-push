@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Pre-push hook: warn before pushing to protected branches.
+# Bypass with: git push --no-verify
+
+protected_branches="master main develop release-* patch-*"
+
+current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+for pattern in $protected_branches; do
+  case "$current_branch" in
+    $pattern)
+      echo ""
+      echo "⚠  You're about to push to the protected branch '$current_branch'."
+      echo ""
+      read -r -p "Are you sure? [y/N] " response < /dev/tty
+      if [[ ! "$response" =~ ^[Yy]$ ]]; then
+        echo "Push aborted."
+        exit 1
+      fi
+      break
+      ;;
+  esac
+done
+
+exit 0
