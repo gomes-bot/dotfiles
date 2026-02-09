@@ -24,5 +24,8 @@ vim.keymap.set("n", "<leader>fm", "<cmd>Telescope messages<cr>", { desc = "Find 
 vim.keymap.set("n", "<leader>fe", "<cmd>Telescope registers<cr>", { desc = "Find registers" })
 vim.keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Find keymaps" })
 
+-- Exit terminal mode
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Close window
 vim.keymap.set("n", "q", "<cmd>close<cr>", { desc = "Close window" })
